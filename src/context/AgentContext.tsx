@@ -7,6 +7,8 @@ interface AgentContextType {
   agentDetails: Record<string, AgentEditDetails>;
   updateAgent: (id: string, updates: Partial<Agent>) => void;
   updateAgentDetails: (id: string, updates: Partial<AgentEditDetails>) => void;
+  deactivateAgent: (id: string) => void;
+  activateAgent: (id: string) => void;
 }
 
 const AgentContext = createContext<AgentContextType | undefined>(undefined);
@@ -35,9 +37,19 @@ export function AgentProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const deactivateAgent = (id: string) => {
+    updateAgent(id, { status: "inactive" });
+    updateAgentDetails(id, { status: "inactive" });
+  };
+
+  const activateAgent = (id: string) => {
+    updateAgent(id, { status: "ready" });
+    updateAgentDetails(id, { status: "ready" });
+  };
+
   return (
     <AgentContext.Provider
-      value={{ agents, agentDetails, updateAgent, updateAgentDetails }}
+      value={{ agents, agentDetails, updateAgent, updateAgentDetails, deactivateAgent, activateAgent }}
     >
       {children}
     </AgentContext.Provider>

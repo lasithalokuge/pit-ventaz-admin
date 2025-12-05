@@ -26,6 +26,12 @@ const statusConfig: Record<
     borderColor: "var(--color-success-border)",
     textColor: "var(--color-success-text)",
   },
+  inactive: {
+    label: "Inactive",
+    bgColor: "#f3f4f6",
+    borderColor: "#d1d5dc",
+    textColor: "#6a7282",
+  },
 };
 
 export function StatusBadge({ status }: StatusBadgeProps) {

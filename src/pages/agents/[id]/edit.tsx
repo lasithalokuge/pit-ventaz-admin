@@ -24,7 +24,7 @@ const TABS = [
 export default function EditAgentPage() {
   const router = useRouter();
   const { id } = router.query;
-  const { agentDetails, updateAgentDetails } = useAgents();
+  const { agentDetails, updateAgentDetails, deactivateAgent, activateAgent } = useAgents();
 
   const [activeTab, setActiveTab] = useState<EditAgentTab>("general");
 
@@ -253,12 +253,15 @@ export default function EditAgentPage() {
                               ? "bg-[#fff8f1] border border-[#fcd9bd] text-[#ff5a1f]"
                               : agent.status === "ready"
                               ? "bg-[#eef6ff] border border-[#bedbff] text-[#51a2ff]"
+                              : agent.status === "inactive"
+                              ? "bg-[#f3f4f6] border border-[#d1d5dc] text-[#6a7282]"
                               : "bg-[#ecfdf5] border border-[#a4f4cf] text-[#00a63e]"
                           }`}
                         >
                           {agent.status === "draft" && "Draft"}
                           {agent.status === "ready" && "Ready"}
                           {agent.status === "live" && "Live"}
+                          {agent.status === "inactive" && "Inactive"}
                         </div>
                         <p className="text-xs text-[#6a7282] leading-5">
                           {agent.status === "draft" &&
@@ -266,17 +269,33 @@ export default function EditAgentPage() {
                           {agent.status === "ready" &&
                             "Agent setup is completed"}
                           {agent.status === "live" && "Agent is live on website"}
+                          {agent.status === "inactive" &&
+                            "Agent has been deactivated"}
                         </p>
                       </div>
 
                       {/* Action buttons */}
                       <div className="flex gap-2.5 flex-1 justify-end">
-                        <button className="flex items-center justify-center px-3 py-1.5 rounded-full bg-[#f9fafb] border border-[#4a5565] text-xs font-medium text-[#4a5565] hover:bg-gray-100 transition-colors cursor-pointer">
-                          Add to Your website
-                        </button>
-                        <button className="flex items-center justify-center px-3 py-1.5 rounded-full bg-[#f9fafb] border border-[#4a5565] text-xs font-medium text-[#4a5565] hover:bg-gray-100 transition-colors cursor-pointer">
-                          Deactivate
-                        </button>
+                        {agent.status !== "inactive" && (
+                          <button className="flex items-center justify-center px-3 py-1.5 rounded-full bg-[#f9fafb] border border-[#4a5565] text-xs font-medium text-[#4a5565] hover:bg-gray-100 transition-colors cursor-pointer">
+                            Add to Your website
+                          </button>
+                        )}
+                        {agent.status === "inactive" ? (
+                          <button
+                            onClick={() => id && activateAgent(id as string)}
+                            className="flex items-center justify-center px-3 py-1.5 rounded-full bg-[#333e4f] text-xs font-medium text-white hover:bg-[#1e2939] transition-colors cursor-pointer"
+                          >
+                            Activate
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => id && deactivateAgent(id as string)}
+                            className="flex items-center justify-center px-3 py-1.5 rounded-full bg-[#f9fafb] border border-[#4a5565] text-xs font-medium text-[#4a5565] hover:bg-gray-100 transition-colors cursor-pointer"
+                          >
+                            Deactivate
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -289,14 +308,20 @@ export default function EditAgentPage() {
                       {/* Warning text */}
                       <div className="flex-1">
                         <p className="text-xs text-[#c70036] leading-5">
-                          Agent is in Ready status. To delete this agent, you need to deactivate it first
+                          {agent.status === "inactive"
+                            ? "Once an agent is deleted, it cannot be recovered. All configurations will be permanently removed, but chat history will be retained for record keeping."
+                            : `Agent is in ${agent.status === "draft" ? "Draft" : agent.status === "ready" ? "Ready" : "Live"} status. To delete this agent, you need to deactivate it first`}
                         </p>
                       </div>
 
-                      {/* Delete button - disabled */}
+                      {/* Delete button */}
                       <button
-                        disabled
-                        className="flex items-center justify-center px-3 py-1.5 rounded-full bg-[#f3f4f6] border border-[#d1d5dc] text-xs font-medium text-[#99a1af] cursor-not-allowed"
+                        disabled={agent.status !== "inactive"}
+                        className={`flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                          agent.status === "inactive"
+                            ? "bg-[#c70036] text-white hover:bg-[#a50029] cursor-pointer"
+                            : "bg-[#f3f4f6] border border-[#d1d5dc] text-[#99a1af] cursor-not-allowed"
+                        }`}
                       >
                         Delete Agent
                       </button>

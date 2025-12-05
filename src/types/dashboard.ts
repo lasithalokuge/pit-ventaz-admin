@@ -33,7 +33,7 @@ export interface User {
 
 export type NavTab = "overview" | "agents" | "chats" | "leads";
 
-export type AgentStatus = "draft" | "ready" | "live";
+export type AgentStatus = "draft" | "ready" | "live" | "inactive";
 
 export interface Agent {
   id: string;
