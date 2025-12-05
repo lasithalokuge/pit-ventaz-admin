@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --color-brand-100: #f3f4f6;
+  --color-brand-200: #e5e7eb;
+  --color-brand-800: #1e2939;
+
+  /* Text Colors */
+  --color-text-strong: #101828;
+  --color-text-subtle: #6a7282;
+  --color-text-light: #99a1af;
+  --color-text-brand-strong: #1e2939;
+
+  /* UI Colors */
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+  --color-success: #008236;
+  --color-danger: #c70036;
+
+  /* Status Badge Colors */
+  --color-warning-soft: #fff8f1;
+  --color-warning-border: #fcd9bd;
+  --color-warning: #ff5a1f;
+  --color-info-soft: #eef6ff;
+  --color-info-border: #bedbff;
+  --color-info: #51a2ff;
+  --color-success-soft: #ecfdf5;
+  --color-success-border: #a4f4cf;
+  --color-success-text: #00a63e;
+  --color-danger-soft: #ffe2e2;
+
+  /* Brand Colors Extended */
+  --color-text-fg-brand: #333e4f;
+  --color-bg-brand: #333e4f;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-200: var(--color-brand-200);
+  --color-brand-800: var(--color-brand-800);
+  --color-text-strong: var(--color-text-strong);
+  --color-text-subtle: var(--color-text-subtle);
+  --color-text-light: var(--color-text-light);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-success: var(--color-success);
+  --color-danger: var(--color-danger);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-brand-100);
+  color: var(--color-text-strong);
+  font-family: var(--font-poppins), system-ui, sans-serif;
 }
