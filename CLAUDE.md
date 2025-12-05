@@ -46,7 +46,7 @@ public/
 - `Input` - Text input with label, disabled state, helper text
 - `Select` - Dropdown select component
 - `TabNavigation` - Tab navigation with change indicator dots
-- `Badge` - Status badges (draft, ready, live)
+- `StatusBadge` - Status badges (draft, ready, live, inactive)
 
 ### Agent Components
 - `AgentCard` - Card displaying agent info with actions
@@ -57,6 +57,7 @@ public/
   - `agents` - List of all agents
   - `agentDetails` - Extended agent details for edit page
   - `updateAgent` / `updateAgentDetails` - Update functions
+  - `deactivateAgent` / `activateAgent` - Change agent status to inactive/ready
 
 ## Design Tokens
 ```css
@@ -82,6 +83,7 @@ public/
 Draft: bg-[#fff8f1] border-[#fcd9bd] text-[#ff5a1f]
 Ready: bg-[#eef6ff] border-[#bedbff] text-[#51a2ff]
 Live: bg-[#ecfdf5] border-[#a4f4cf] text-[#00a63e]
+Inactive: bg-[#f3f4f6] border-[#d1d5dc] text-[#6a7282]
 
 /* Border Radius */
 rounded: 8px
@@ -108,6 +110,10 @@ npm run lint     # Run ESLint
 - Change detection with orange indicator dot on tabs
 - Save/Reset buttons enable when form has changes
 - Changes persist via AgentContext and reflect on agents list
+- Deactivate/Activate agent functionality
+  - Deactivate button changes agent status to "inactive"
+  - Activate button (shown when inactive) restores agent to "ready" status
+  - Delete Agent button only enabled when agent is inactive
 
 ## Figma Design Reference
 https://www.figma.com/design/Wo819Mu4GA1EMjECYSWgYE/Ventaz.web?node-id=1268-16058
