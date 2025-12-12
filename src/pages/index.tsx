@@ -3,7 +3,7 @@ import { PageHeading } from "@/components/ui/PageHeading";
 import { DataCardsGrid } from "@/components/dashboard/DataCardsGrid";
 import { RecentActivities } from "@/components/dashboard/RecentActivities";
 import { QuickActions } from "@/components/dashboard/QuickActions";
-import { ChevronDownIcon } from "@/components/icons";
+import { TimeRangeDropdown } from "@/components/dashboard/TimeRangeDropdown";
 import {
   currentUser,
   metricsRow1,
@@ -20,12 +20,7 @@ export default function Overview() {
         <PageHeading
           title={`Welcome Back, ${currentUser.name}`}
           subtitle="Here's what's happening with your AI agent"
-          actions={
-            <button className="flex items-center gap-0.5 px-4 py-1.5 bg-[var(--color-brand-200)] rounded-full text-sm text-[var(--color-text-strong)] hover:bg-gray-300 transition-colors cursor-pointer">
-              <span>Past 30 days</span>
-              <ChevronDownIcon size={16} className="text-[var(--color-text-strong)]" />
-            </button>
-          }
+          actions={<TimeRangeDropdown />}
         />
 
         {/* Dashboard Numbers - Two Rows of Data Cards */}

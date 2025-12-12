@@ -6,7 +6,7 @@ import {
   ThumbsUpIcon,
   TimelapseIcon,
   InfoIcon,
-  ArrowRightIcon,
+  CalendarArrowRightIcon,
   TrendUpIcon,
   ActiveVisitorsIcon,
   StopwatchIcon,
@@ -69,7 +69,7 @@ export function DataCard({ card }: DataCardProps) {
         {/* Action Button */}
         {card.hasAction && (
           <IconButton variant="default" size="md">
-            <ArrowRightIcon size={16} />
+            <CalendarArrowRightIcon size={16} />
           </IconButton>
         )}
       </div>

@@ -40,13 +40,24 @@ public/
 ### Layout & Navigation
 - `Layout` - Main layout wrapper with header and navigation
 - `Header` - Top navigation bar with logo, nav tabs, and user profile
+- `ProfileDropdown` - User profile dropdown with settings, user management, billing, sign out
 - `PageHeading` - Reusable page heading with title, subtitle, and actions
+
+### Dashboard Components
+- `DataCard` - Metric card with icon, value, and trend indicator
+- `DataCardsGrid` - Grid layout for metric cards
+- `RecentActivities` - Activity list component
+- `QuickActions` - Quick action buttons section
+- `TimeRangeDropdown` - Time range selector with preset options and custom date range
+- `DateRangePicker` - Dual calendar date range picker
 
 ### UI Components
 - `Input` - Text input with label, disabled state, helper text
 - `Select` - Dropdown select component
 - `TabNavigation` - Tab navigation with change indicator dots
 - `StatusBadge` - Status badges (draft, ready, live, inactive)
+- `IconButton` - Icon button with variants (default, ghost)
+- `CardIcon` - Icon container with optional glass effect
 
 ### Agent Components
 - `AgentCard` - Card displaying agent info with actions
@@ -88,6 +99,13 @@ Inactive: bg-[#f3f4f6] border-[#d1d5dc] text-[#6a7282]
 /* Border Radius */
 rounded: 8px
 rounded-full: 9999px
+
+/* Glass Morphism Dropdown Style (use for ALL dropdowns) */
+background-color: rgba(255, 255, 255, 0.8)
+backdrop-filter: blur(8px)
+box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px 0px rgba(0,0,0,0.05)
+border: 1px solid rgba(255, 255, 255, 1)
+border-radius: 12px
 ```
 
 ## Development Commands
@@ -115,5 +133,14 @@ npm run lint     # Run ESLint
   - Activate button (shown when inactive) restores agent to "ready" status
   - Delete Agent button only enabled when agent is inactive
 
+## Custom Icons
+All icons are in `src/components/icons/index.tsx`. Key icons include:
+- `CalendarArrowLeftIcon` / `CalendarArrowRightIcon` - Navigation arrows with stem + arrowhead
+- `CalendarIcon` - Calendar with tabs and date dots (used in date picker inputs)
+- `ChevronDownIcon` - Dropdown chevron
+- `CheckIcon` - Checkmark for selected items
+- `ProfileSettingsIcon`, `UsersIcon`, `BillingIcon`, `LogoutIcon` - Profile dropdown icons
+
 ## Figma Design Reference
-https://www.figma.com/design/Wo819Mu4GA1EMjECYSWgYE/Ventaz.web?node-id=1268-16058
+- Main design: https://www.figma.com/design/Wo819Mu4GA1EMjECYSWgYE/Ventaz.web?node-id=1268-16058
+- Profile dropdown: https://www.figma.com/design/ChOxKsxCETA1zys9Be34d9/Ventaz-admin-assignment?node-id=1268-16281

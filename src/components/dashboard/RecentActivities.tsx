@@ -1,4 +1,4 @@
-import { LeadIcon, ConversationIcon, ArrowRightIcon } from "@/components/icons";
+import { LeadIcon, ConversationIcon, CalendarArrowRightIcon } from "@/components/icons";
 import { IconButton } from "@/components/ui/IconButton";
 import { Activity } from "@/types/dashboard";
 
@@ -27,7 +27,7 @@ export function RecentActivities({ activities }: RecentActivitiesProps) {
           </p>
         </div>
         <IconButton variant="default" size="md">
-          <ArrowRightIcon size={16} />
+          <CalendarArrowRightIcon size={16} />
         </IconButton>
       </div>
 
